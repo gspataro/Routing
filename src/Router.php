@@ -119,8 +119,8 @@ final class Router
 
         if (!empty($matchingRoute['middlewares'])) {
             foreach ($matchingRoute['middlewares'] as $middleware) {
-                $middleware = new $middleware($this->request);
-                $middleware->process($params, $this);
+                $middleware = new $middleware($this->request, $response);
+                $middleware->process($params);
             }
         }
 
