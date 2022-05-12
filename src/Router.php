@@ -85,7 +85,6 @@ final class Router
     public function deploy($requestPath = null): Response
     {
         $requestPath = $this->removeTrailingSlash($requestPath ?? $this->request->path);
-        $requestMethod = $this->request->method;
         $matchingRoute = $this->routes->get("error404");
         $failed = true;
 
@@ -97,7 +96,6 @@ final class Router
             }
 
             $matchingRoute = $route;
-            $matchingRouteName = $routeName;
             $failed = false;
             break;
         }
