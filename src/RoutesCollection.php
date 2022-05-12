@@ -66,12 +66,6 @@ final class RoutesCollection
             );
         }
 
-        if (get_parent_class($callback[0]) != Controller::class) {
-            throw new Exception\InvalidControllerException(
-                "Invalid controller provided to route named '{$tag}'. A controller must extend the Routing\Controller abstract class."
-            );
-        }
-
         for ($i = 0; $i < count($middlewares); $i++) {
             if (!class_exists($middlewares[$i]) || get_parent_class($middlewares[$i]) != Middleware::class) {
                 throw new Exception\InvalidRouteMiddlewareException(
