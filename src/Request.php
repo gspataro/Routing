@@ -54,7 +54,7 @@ final class Request
         $this->domain = $_SERVER['SERVER_NAME'];
         $this->path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->input = json_decode(file_get_contents("php://input", true)) ?? [];
+        $this->input = json_decode(file_get_contents("php://input"), true) ?? [];
     }
 
     /**
