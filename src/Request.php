@@ -37,6 +37,14 @@ final class Request
     public string $method;
 
     /**
+     * Store request input
+     *
+     * @var array
+     */
+
+    public readonly array $input;
+
+    /**
      * Initialize request
      */
 
@@ -46,6 +54,7 @@ final class Request
         $this->domain = $_SERVER['SERVER_NAME'];
         $this->path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->input = json_decode(file_get_contents("php://input", true));
     }
 
     /**
@@ -75,6 +84,18 @@ final class Request
     public function post(string $key)
     {
         return $_POST[$key] ?? null;
+    }
+
+    /**
+     * Get request input variable
+     *
+     * @param string $key
+     * @return mixed
+     */
+
+    public function input(string $key): mixed
+    {
+        return $this->input[$key] ?? null;
     }
 
     /**
