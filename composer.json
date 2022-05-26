@@ -17,7 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "GSpataro\\Routing\\": "src/Routing/"
+            "Tests\\": "tests/Routing/"
         }
     }
 }
