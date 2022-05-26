@@ -58,24 +58,19 @@ final class Request
     }
 
     /**
-     * Get or set $_GET variable
+     * Get variable from $_GET array
      *
      * @param string $key
-     * @param mixed $value
      * @return mixed
      */
 
-    public function get(string $key, mixed $value = null): mixed
+    public function get(string $key): mixed
     {
-        if (!is_null($value)) {
-            $_GET[$key] = $value;
-        }
-
         return $_GET[$key] ?? null;
     }
 
     /**
-     * Get $_POST variable
+     * Get variable from $_POST array
      *
      * @param string $key
      * @return mixed
@@ -87,7 +82,7 @@ final class Request
     }
 
     /**
-     * Get request input variable
+     * Get variable from request input
      *
      * @param string $key
      * @return mixed
@@ -99,7 +94,7 @@ final class Request
     }
 
     /**
-     * Get $_FILES variable
+     * Get variable from $_FILES
      *
      * @param string $key
      * @return mixed
