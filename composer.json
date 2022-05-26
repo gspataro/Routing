@@ -12,7 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GSpataro\\Routing\\": "/src/Routing"
+            "GSpataro\\Routing\\": "src/Routing/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GSpataro\\Routing\\": "src/Routing/"
         }
     }
 }
