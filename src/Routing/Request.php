@@ -94,7 +94,7 @@ final class Request
     }
 
     /**
-     * Get variable from $_FILES
+     * Get variable from $_FILES array
      *
      * @param string $key
      * @return mixed
@@ -145,7 +145,7 @@ final class Request
     }
 
     /**
-     * Get $_SERVER variable
+     * Get variable from $_SERVER array
      *
      * @param string $key
      * @return mixed
