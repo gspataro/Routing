@@ -106,20 +106,28 @@ final class Request
     }
 
     /**
-     * Get or set $_SESSION variable
+     * Get variable from $_SESSION array
      *
      * @param string $key
-     * @param mixed $value
      * @return mixed
      */
 
-    public function session(string $key, mixed $value = null): mixed
+    public function getSession(string $key): mixed
     {
-        if (!is_null($value)) {
-            $_SESSION[$key] = $value;
-        }
-
         return $_SESSION[$key] ?? null;
+    }
+
+    /**
+     * Set variable into the $_SESSION array
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+
+    public function setSession(string $key, mixed $value): void
+    {
+        $_SESSION[$key] = $value;
     }
 
     /**
