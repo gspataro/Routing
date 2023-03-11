@@ -10,7 +10,7 @@ final class Request
      * @var string
      */
 
-    public string $protocol;
+    public readonly string $protocol;
 
     /**
      * Store request domain
@@ -18,7 +18,7 @@ final class Request
      * @var string
      */
 
-    public string $domain;
+    public readonly string $domain;
 
     /**
      * Store request path
@@ -26,7 +26,7 @@ final class Request
      * @var string
      */
 
-    public string $path;
+    public readonly string $path;
 
     /**
      * Store request method
@@ -34,7 +34,7 @@ final class Request
      * @var string
      */
 
-    public string $method;
+    public readonly string $method;
 
     /**
      * Store request input
@@ -46,15 +46,17 @@ final class Request
 
     /**
      * Initialize request
+     *
+     * @param array $parameters
      */
 
-    public function __construct()
+    public function __construct(array $parameters = [])
     {
-        $this->protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off" ? "https" : "http";
-        $this->domain = $_SERVER['SERVER_NAME'];
-        $this->path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->input = json_decode(file_get_contents("php://input"), true) ?? [];
+        $this->protocol = $parameters['https'] ?? (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http');
+        $this->domain = $parameters['serverName'] ?? $_SERVER['SERVER_NAME'] ?? '';
+        $this->path = $parameters['requestUri'] ?? $_SERVER['REQUEST_URI'] ?? '';
+        $this->method = $parameters['method'] ?? $_SERVER['REQUEST_METHOD'] ?? Method::GET->value;
+        $this->input = $parameters['input'] ?? (json_decode(file_get_contents('php://input'), true) ?? []);
     }
 
     /**
